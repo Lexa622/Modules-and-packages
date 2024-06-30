@@ -54,7 +54,7 @@ class UrTube:
         for movie in args:
             self.videos.append(movie)
 
-    def get_videos(self, text: str) -> list:
+    def get_videos(self, text):
         list_movie = []
         for video in self.videos:
             if text.upper() in video.title.upper():
