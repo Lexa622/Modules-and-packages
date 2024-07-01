@@ -15,14 +15,16 @@ class Plant:
 
 class Mammal(Animal):
     def eat(self, food):
-        self.fed = True
-        print(f"{self.name} сЪел {food.name}")
+        if Fruit.edible:
+            self.fed = True
+            print(f"{self.name} сЪел {food.name}")
 
 
 class Predator(Animal):
     def eat(self, food):
-        self.alive = False
-        print(f"{self.name} не стал есть {food.name}")
+        if not Flower.edible:
+            print(f"{self.name} не стал есть {food.name}")
+            self.alive = False
 
 
 class Flower(Plant):
