@@ -56,10 +56,16 @@ class Triangle(Figure):
 
     def __init__(self, __color, *__sides, filled=True, __height=0):
         super().__init__(__color, __sides, filled)
-        if len(__sides) != self.sides_count:
-            for i in range(3):
-                __sides = 1
-        self.__height = __height
+        if len(__sides) != self.sides_count and len(__sides) != 1:
+            __sides = [1] * self.sides_count
+        elif len(__sides) == 1:
+            __sides = [*__sides] * self.sides_count
+        else:
+            __sides = [*__sides]
+        self.__height = ((__sides[0] ** 2) - (__sides[0] / 2) ** 2) ** 0.5
+
+    def get_square(self):
+        return self.get_sides()[0] * self.__height / 2
 
 
 class Cube(Figure):
@@ -67,15 +73,18 @@ class Cube(Figure):
 
     def __init__(self, __color, *__sides, filled=True):
         super().__init__(__color, __sides, filled)
-        if len(__sides) != self.sides_count:
-            __sides = [1 * self.sides_count]
+        if len(__sides) != self.sides_count and len(__sides) != 1:
+            __sides = [1] * self.sides_count
+        elif len(__sides) == 1:
+            __sides = [*__sides] * self.sides_count
         else:
-            __sides *= self.sides_count
+            __sides = [*__sides]
 
     def get_volume(self):
         return self.get_sides()[0] ** 3
 
 
+triangle = Triangle((125, 15, 76), 8)
 circle1 = Circle((200, 200, 100), 10)   # (Цвет, стороны)
 cube1 = Cube((222, 35, 130), 6)
 # Проверка на изменение цветов:
