@@ -1,8 +1,9 @@
 class Horse:
     """Horse - класс описывающий лошадь."""
-    def __init__(self, x_distance=0, sound="Frrr"):
+    def __init__(self, x_distance=0, sound="Frrr", y_distance=0):
         self.x_distance = x_distance    # пройденный путь.
         self.sound = sound  # звук, который издаёт лошадь.
+        super().__init__(y_distance)
 
     def run(self, dx):
         self.x_distance += dx   # изменение дистанции, увеличивает x_distance на dx.
@@ -10,7 +11,7 @@ class Horse:
 
 class Eagle:
     """класс описывающий орла."""
-    def __init__(self, y_distance=0, sound='I train, eat, sleep, and repeat'):
+    def __init__(self, y_distance=0, sound="I train, eat, sleep, and repeat"):
         self.y_distance = y_distance    # высота полёта.
         self.sound = sound  # звук, который издаёт орёл (отсылка(Я тренируюсь, ем, сплю и повторяю))
 
@@ -21,9 +22,8 @@ class Eagle:
 class Pegasus(Horse, Eagle):
     """класс описывающий пегаса. Наследуется от Horse и Eagle в том же порядке.
     Объект такого класса должен обладать атрибутами классов родителей в порядке наследования."""
-    def __init__(self):
-        Horse.__init__(self)
-        Eagle.__init__(self)
+    def __init__(self, x_distance=0, y_distance=0, sound=""):
+        super().__init__(x_distance, sound, y_distance)
 
     def move(self, dx, dy):
         self.run(dx)
@@ -43,5 +43,4 @@ p1.move(10, 15)
 print(p1.get_pos())
 p1.move(-5, 20)
 print(p1.get_pos())
-
 p1.voice()
