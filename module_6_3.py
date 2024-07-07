@@ -18,9 +18,6 @@ class Eagle:
 
 
 class Pegasus(Horse, Eagle):
-    def __init__(self):
-        super().__init__()
-
     def move(self, dx, dy):
         self.run(dx)
         self.fly(dy)
@@ -33,10 +30,12 @@ class Pegasus(Horse, Eagle):
 
 
 p1 = Pegasus()
-
 print(p1.get_pos())
 p1.move(10, 15)
 print(p1.get_pos())
 p1.move(-5, 20)
 print(p1.get_pos())
 p1.voice()
+print(Pegasus.mro())
+print(Eagle.mro())
+print(Horse.mro())
